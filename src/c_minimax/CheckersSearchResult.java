@@ -18,7 +18,8 @@ class CheckersSearchResult implements InterfaceSearchResult {
 
     @Override
     public void setBestMoveSoFar(InterfaceIterator newMove, float newScore) {
-        bestMoveSoFar  = new Connect4Iterator(newMove);
+        bestMoveSoFar  = new CheckersIterator(newMove.nC(), newMove.nR());
+        bestMoveSoFar.set(newMove);
         bestScoreSoFar = (short)(newScore*(1<<14));
     }
 

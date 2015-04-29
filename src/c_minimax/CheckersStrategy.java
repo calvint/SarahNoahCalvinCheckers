@@ -14,6 +14,9 @@ public class CheckersStrategy implements InterfaceStrategy {
         InterfaceSearchResult searchResult = new CheckersSearchResult(); // Return information
 
         int player   = position.getPlayer();
+        if (player == 0) {
+        	player = 1;
+        }
         int opponent = 3-player; // There are two players, 1 and 2.
         float uncertaintyPenalty = .01f;
         boolean jumpPossible = ((CheckersPosition)position).jumpPossible();
