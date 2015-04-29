@@ -99,7 +99,7 @@ public class CheckersPosition implements InterfacePosition {
     @Override
     public void reset() {
         // TODO Auto-generated method stub
-
+        position = 0;
     }
 
     @Override
