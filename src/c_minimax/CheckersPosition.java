@@ -13,20 +13,20 @@ public class CheckersPosition implements InterfacePosition {
     private long position = 0;
     private int nC = 0;
     private int nR = 0;
-    private int[] powerOfThree = new int[32];
+    static private long[] powerOfThree = new long[32];
 
     CheckersPosition( int nC, int nR) {
         position = 0;
         this.nC = nC;
         this.nR = nR;
-        setPowerOfThree();
+        if (powerOfThree[0] != 1) setPowerOfThree();
     }
 
     CheckersPosition( InterfacePosition pos ) {
         position = pos.getRawPosition();
         nC       = pos.nC();
         nR       = pos.nR();
-        setPowerOfThree();
+        if (powerOfThree[0] != 1) setPowerOfThree();
     }
     
     private void setPowerOfThree() { 
@@ -47,7 +47,8 @@ public class CheckersPosition implements InterfacePosition {
     }
 
     private int getColor( int iC, int iR ) { // 0 if transparent, 1 if white, 2 if black
-        return ( (int) ( position / powerOfThree[(8*iR+iC)/2] ) ) & 3;
+        int retVal = (int) ( ( position / powerOfThree[(8*iR+iC)/2] ) % 3 );
+        return (retVal < 0) ? retVal+3 : retVal;
     }
 
     @Override
@@ -113,4 +114,55 @@ public class CheckersPosition implements InterfacePosition {
         return 0;
     }
 
+    public static void testMe(String[] args) {// Unit test (incomplete)
+        CheckersPosition position = new CheckersPosition(8,8);
+        
+        for (int iR = 0; iR < 8; iR++) {
+            for (int iC = (iR+1)%2; iC < 8; iC+=2) {
+                System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
+            }
+        }
+        System.out.println("-------------------------");
+
+        position.setColor(0, 0, 1);
+        position.setColor(1, 0, 0);
+        position.setColor(3, 0, 1);
+        position.setColor(4, 1, 1);
+        for (int iR = 0; iR < 8; iR++) {
+            for (int iC = (iR+1)%2; iC < 8; iC+=2) {
+                System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
+            }
+        }
+        System.out.println("-------------------------");
+
+        position.setColor(1, 0, 2);
+        position.setColor(3, 0, 2);
+        position.setColor(5, 0, 2);
+        position.setColor(7, 0, 2);
+        position.setColor(0, 1, 2);
+        position.setColor(2, 1, 2);
+        position.setColor(4, 1, 2);
+        position.setColor(6, 1, 2);
+        position.setColor(1, 2, 2);
+        position.setColor(3, 2, 2);
+        position.setColor(5, 2, 2);
+        position.setColor(7, 2, 2);
+        position.setColor(0, 5, 1);
+        position.setColor(2, 5, 1);
+        position.setColor(4, 5, 1);
+        position.setColor(6, 5, 1);
+        position.setColor(1, 6, 1);
+        position.setColor(3, 6, 1);
+        position.setColor(5, 6, 1);
+        position.setColor(7, 6, 1);
+        position.setColor(0, 7, 1);
+        position.setColor(2, 7, 1);
+        position.setColor(4, 7, 1);
+        position.setColor(6, 7, 1);
+        for (int iR = 0; iR < 8; iR++) {
+            for (int iC = (iR+1)%2; iC < 8; iC+=2) {
+                System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
+            }
+        }
+    }
 }
