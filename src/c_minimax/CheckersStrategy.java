@@ -1,5 +1,6 @@
 package c_minimax;
 
+import java.lang.Math;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -14,16 +15,12 @@ public class CheckersStrategy implements InterfaceStrategy {
 
         int player   = position.getPlayer();
         int opponent = 3-player; // There are two players, 1 and 2.
-
-        int  nRandom = rand.nextInt(position.nC());
         float uncertaintyPenalty = .01f;
+        boolean jumpPossible = ((CheckersPosition)position).jumpPossible();
         
-        for ( int iC_raw = 0; iC_raw < position.nC(); iC_raw++) {
-            int iC = (iC_raw+nRandom)% position.nC();
+        for ( InterfaceIterator iPos = new CheckersIterator(8,8); iPos.isInBounds(); iPos.increment() ) {
             InterfacePosition posNew = new CheckersPosition( position );
-            InterfaceIterator iPos   = new CheckersIterator( position.nC(), position.nR() ); iPos.set(iC, 0);
-            int iR = position.nR() - posNew.getChipCount(iPos) - 1;                          iPos.set(iC,iR); 
-            if (iR >= 0) { // The column is not yet full
+            if (((CheckersPosition)posNew).validMove( iPos, jumpPossible)) { // The column is not yet full
                 posNew.setColor(iPos, player);
                 int isWin = posNew.isWinner( iPos ); // iPos
                 float score;
@@ -65,14 +62,10 @@ public class CheckersStrategy implements InterfaceStrategy {
                 break; // Need to make any move now
             }
         }
-
-        //if (searchResult.isResultFinal() && position.getChipCount()%3==1) // Hash this result
-        //    checkedPositions.put(position.getRawPosition(),searchResult.getClassStateCompacted());
-                
         return searchResult;
     }
-
-    @Override
+    
+	@Override
     public void setContext(InterfaceSearchContext strategyContext) {
         // Not used in this strategy
     }
