@@ -147,8 +147,13 @@ public class CheckersPosition implements InterfacePosition {
 
     @Override
     public int getChipCount() {
-        // TODO Auto-generated method stub
-        return 0;
+        int chipCount = 0;
+        for (int iR = 0; iR < 8; iR++) {
+            for (int iC = (iR+1)%2; iC < 8; iC+=2) {
+                if (getColor(iC, iR) > 0) chipCount++;
+            }
+        }
+        return chipCount;
     }
 
     @Override
