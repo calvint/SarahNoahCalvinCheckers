@@ -102,8 +102,27 @@ public class CheckersPosition implements InterfacePosition {
         }
         
         // Find if there is only one player's chips left
+        boolean player1ChipsExist = false;
+        boolean player2ChipsExist = false;
         
-        return -1; // Otherwise the game is still going
+        // Check for possible moves
+        for (InterfaceIterator iPos = new CheckersIterator(nC, nR); iPos.isInBounds(); iPos.increment()) {
+            if (possibleMove(iPos)) return -1; // Otherwise the game is still going
+            if (!player1ChipsExist || !player2ChipsExist) {
+                if (getColor(iPos) == 1) player1ChipsExist = true;
+                else if (getColor(iPos) == 2) player2ChipsExist = true;
+            }
+        }
+        
+        if (player1ChipsExist && !player2ChipsExist) {
+            // Player 1 wins
+            return 1;
+        } else if (player2ChipsExist && !player1ChipsExist) {
+            // Player 2 wins
+            return 2;
+        }
+        
+        return 0;
         // TODO Testing for a draw is more involved
     }
 
