@@ -96,10 +96,14 @@ public class CheckersPosition implements InterfacePosition {
         final int topRow = 0;
         final int bottomRow = nR - 1;
 
-        // Loop through the top and bottom rows
-        for (int iC = 0; iC < nC; iC++) {
-            if (getColor(iC, bottomRow) == 1) return 1; // If player 1 made it to the top row, they win
-            if (getColor(iC, topRow)    == 2) return 2; // If player 2 made it to the bottom row, they win
+        // Check if Player 1 won
+        for (int iC = 1; iC < nC; iC+=2) {
+            if (getColor(iC, topRow) == 1)  return 1; // If player 1 made it to the top row, they win
+        }
+
+        // Check if Player 2 won
+        for (int iC = 0; iC < nC; iC+=2) {
+            if (getColor(iC, bottomRow) == 2) return 2; // If player 2 made it to the bottom row, they win
         }
         
         // Find if there is only one player's chips left
@@ -236,11 +240,11 @@ public class CheckersPosition implements InterfacePosition {
         }
         System.out.println("-------------------------");
 
-        position.setColor(0, 0, 1);
-        position.setColor(1, 0, 0);
-        position.setColor(3, 0, 1);
-        position.setColor(4, 1, 1);
-        position.setPlayer(1);
+//        position.setColor(0, 0, 1);
+//        position.setColor(1, 0, 0);
+//        position.setColor(3, 0, 1);
+//        position.setColor(4, 1, 1);
+//        position.setPlayer(1);
         for (int iR = 0; iR < 8; iR++) {
             for (int iC = (iR+1)%2; iC < 8; iC+=2) {
                 System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
@@ -273,13 +277,13 @@ public class CheckersPosition implements InterfacePosition {
         position.setColor(2, 7, 1);
         position.setColor(4, 7, 1);
         position.setColor(6, 7, 1);
-        position.setPlayer(2);
+        //position.setPlayer(2);
         for (int iR = 0; iR < 8; iR++) {
             for (int iC = (iR+1)%2; iC < 8; iC+=2) {
                 System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
             }
         }
-        position.setPlayer(1);
+        //position.setPlayer(1);
         System.out.println("player: " + position.getPlayer());
         System.out.println("position: " + position.getRawPosition());
     }
