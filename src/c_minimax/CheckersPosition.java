@@ -95,8 +95,19 @@ public class CheckersPosition implements InterfacePosition {
 
     @Override
     public int isWinner() {
-        // TODO Auto-generated method stub
-        return 0;
+        final int topRow = 0;
+        final int bottomRow = nR - 1;
+
+        // Loop through the top and bottom rows
+        for (int iC = 0; iC < nC; iC++) {
+            if (getColor(iC, bottomRow) == 1) return 1; // If player 1 made it to the top row, they win
+            if (getColor(iC, topRow)    == 2) return 2; // If player 2 made it to the bottom row, they win
+        }
+        
+        // Find if there is only one player's chips left
+        
+        return -1; // Otherwise the game is still going
+        // TODO Testing for a draw is more involved
     }
 
     @Override
