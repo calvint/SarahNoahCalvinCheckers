@@ -171,6 +171,16 @@ public class CheckersPosition implements InterfacePosition {
     	if (getColor(iPos) == 0 || getColor(iPos) != getPlayer() ) {
     		return false;
     	}
+    	//check if the destination is going in the correct direction
+    	int multiplier;
+    	if (getPlayer() == 2) {
+    		multiplier = -1;
+    	} else {
+    		multiplier = 1;
+    	}
+    	if ((iPos.dR()-iPos.iR()) * multiplier < 0) {
+    		return false;
+    	}
     	//check if the destination is already filled and return false if it is
     	if (getColor(iPos.dC(), iPos.dR()) != 0) {
     		return false;
