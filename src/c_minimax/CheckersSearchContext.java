@@ -8,7 +8,6 @@ public class CheckersSearchContext implements InterfaceSearchContext {
   int maxSearchDepth;
   int currentDepth;
   int originalPlayer;
-
   @Override
   public int getCurrentDepth() {
     return currentDepth;

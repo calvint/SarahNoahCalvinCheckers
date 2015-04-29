@@ -21,5 +21,25 @@ public class Connect4Iterator implements InterfaceIterator {
     @Override public void set( InterfaceIterator iter ) { iterator = ((Connect4Iterator)iter).iterator; }
     @Override public void set(int iC, int iR) { iterator = nC*iR+iC; }//7
     @Override public boolean isInBounds() { return 0<=iterator && iterator<nC*nR; }//7*6
+    @Override
+    public int dC() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public int dR() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public void set(int iC, int iR, int dC, int dR) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public boolean isDestinationInBounds() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 }

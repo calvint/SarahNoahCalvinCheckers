@@ -41,5 +41,25 @@ public class TicTacToeIterator implements InterfaceIterator {
     }
     @Override public void set(int iC, int iR) { iterator = inverseShuffleMap.get(3*iR+iC); }
     @Override public boolean isInBounds() { return 0<=iterator && iterator<3*3; }
+    @Override
+    public int dC() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public int dR() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    @Override
+    public void set(int iC, int iR, int dC, int dR) {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public boolean isDestinationInBounds() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 }

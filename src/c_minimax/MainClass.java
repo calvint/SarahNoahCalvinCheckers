@@ -13,7 +13,7 @@ public class MainClass extends Application {
     static InterfaceView    viewer;
 
     public static void main(String[] args) {
-        Game myGame =  Game.CONNECT4 ;// Game.CHECKERS ;// Game.TIC_TAC_TOE ;// 
+        Game myGame =  Game.CHECKERS ;// Game.TIC_TAC_TOE ;// Game.CONNECT4 ;
 
         if (        myGame == Game.CONNECT4    ) {
             controller = new Connect4Control();
