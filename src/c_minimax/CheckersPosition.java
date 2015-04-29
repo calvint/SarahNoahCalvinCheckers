@@ -16,7 +16,8 @@ public class CheckersPosition implements InterfacePosition {
     static private long[] powerOfThree = new long[33]; // 32  +1(for player)
 
     CheckersPosition( int nC, int nR) {
-        position = 0;
+        //position = 0;
+        reset();
         this.nC = nC;
         this.nR = nR;
         if (powerOfThree[0] != 1) setPowerOfThree();
@@ -137,6 +138,7 @@ public class CheckersPosition implements InterfacePosition {
     @Override
     public void reset() {
         // TODO Auto-generated method stub
+        position = 2779528540417001L;
     }
 
     @Override
@@ -277,6 +279,8 @@ public class CheckersPosition implements InterfacePosition {
                 System.out.println("(" + iC + ", " + iR + ") = " + position.getColor(iC, iR));
             }
         }
+        position.setPlayer(1);
         System.out.println("player: " + position.getPlayer());
+        System.out.println("position: " + position.getRawPosition());
     }
 }
