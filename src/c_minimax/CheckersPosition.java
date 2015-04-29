@@ -105,9 +105,7 @@ public class CheckersPosition implements InterfacePosition {
         boolean player1ChipsExist = false;
         boolean player2ChipsExist = false;
         
-        // Check for possible moves
         for (InterfaceIterator iPos = new CheckersIterator(nC, nR); iPos.isInBounds(); iPos.increment()) {
-            if (possibleMove(iPos)) return -1; // Otherwise the game is still going
             if (!player1ChipsExist || !player2ChipsExist) {
                 if (getColor(iPos) == 1) player1ChipsExist = true;
                 else if (getColor(iPos) == 2) player2ChipsExist = true;
@@ -122,8 +120,12 @@ public class CheckersPosition implements InterfacePosition {
             return 2;
         }
         
+        // Check for possible moves
+        for (InterfaceIterator iPos = new CheckersIterator(nC, nR); iPos.isInBounds(); iPos.increment()) {
+            if (possibleMove(iPos)) return -1; // Otherwise the game is still going  
+        }
+        
         return 0;
-        // TODO Testing for a draw is more involved
     }
 
     @Override
