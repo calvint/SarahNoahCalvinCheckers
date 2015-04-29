@@ -54,7 +54,9 @@ public class CheckersPosition implements InterfacePosition {
 
     @Override
     public void setColor( InterfaceIterator iPos, int color ) { // color is 1 if red, 2 if yellow
-        setColor( iPos.dC(), iPos.dR(), color );
+        // Add the checker to the new square
+        setColor( iPos.dC(), iPos.dR(), color ); 
+        // Remove the checker from the source square
         setColor(iPos.iC(), iPos.iR(), 0);
         // if move is a jump
         if (Math.abs(iPos.dC()-iPos.iR()) > 1) {
