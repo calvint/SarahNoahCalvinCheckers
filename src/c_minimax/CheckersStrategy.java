@@ -14,7 +14,7 @@ public class CheckersStrategy implements InterfaceStrategy {
 
         int player   = position.getPlayer();
         if (player == 0) {
-            System.out.println("NO");
+            System.out.println("Problemo");
         	player = 1;
         }
         int opponent = 3-player; // There are two players, 1 and 2.
@@ -59,9 +59,9 @@ public class CheckersStrategy implements InterfaceStrategy {
             }
             long timeNow = System.nanoTime();
             if ( context.getMaxSearchTimeForThisPos() - timeNow <= 0 ) {
-                //System.out.println("CheckersStrategyB:getBestMove(): ran out of time: maxTime("
-                //        +context.getMaxSearchTimeForThisPos()+") :time("
-                //        +timeNow+"): recDepth("+context.getCurrentDepth()+")");
+                System.out.println("CheckersStrategy:getBestMove(): ran out of time: maxTime("
+                        +context.getMaxSearchTimeForThisPos()+") :time("
+                        +timeNow+"): recDepth("+context.getCurrentDepth()+")");
                 break; // Need to make any move now
             }
         }
