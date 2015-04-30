@@ -59,7 +59,7 @@ public class CheckersPosition implements InterfacePosition {
         // Remove the checker from the source square
         setColor(iPos.iC(), iPos.iR(), 0);
         // if move is a jump
-        if (Math.abs(iPos.dC()-iPos.iR()) > 1) {
+        if (Math.abs(iPos.dC()-iPos.iC()) > 1) {
         	//remove the opponents piece in between
         	int columnBetween = iPos.iC() + ((iPos.dC()-iPos.iC())/2);
     		int rowBetween = iPos.iR() + ((iPos.dR()-iPos.iR())/2);
@@ -169,7 +169,7 @@ public class CheckersPosition implements InterfacePosition {
     	for ( InterfaceIterator iPos = new CheckersIterator(nC,nR); iPos.isInBounds(); iPos.increment() ) {
     		if (possibleMove(iPos)) {
     			//if move is a jump
-    			if (Math.abs(iPos.dC()-iPos.iR()) > 1) {
+    			if (Math.abs(iPos.dC()-iPos.iC()) > 1) {
     				return true;
     			}
     		}		
@@ -193,7 +193,7 @@ public class CheckersPosition implements InterfacePosition {
     	} else {
     		multiplier = 1;
     	}
-    	if ((iPos.dR()-iPos.iR()) * multiplier < 0) {
+    	if ((iPos.dR()-iPos.iR()) * multiplier > 0) {
     		return false;
     	}
     	//check if the destination is already filled and return false if it is
@@ -201,7 +201,7 @@ public class CheckersPosition implements InterfacePosition {
     		return false;
     	}
     	//check to see if iPos represents a jump
-    	if (Math.abs(iPos.dC()-iPos.iR()) > 1) {
+    	if (Math.abs(iPos.dC()-iPos.iC()) > 1) {
         	//if it is a jump
         	//check to see if there is an opponent's piece to jump in between initial and destination squares
     		int columnBetween = iPos.iC() + ((iPos.dC()-iPos.iC())/2);
@@ -221,7 +221,7 @@ public class CheckersPosition implements InterfacePosition {
     public boolean validMove( InterfaceIterator iPos, boolean jumpPossible) {
     	if (possibleMove(iPos)) {
     		//check to see if iPos represents a jump
-        	if (Math.abs(iPos.dC()-iPos.iR()) > 1) {
+        	if (Math.abs(iPos.dC()-iPos.iC()) > 1) {
             	//if it is a jump
             	return true;
         	} else {
