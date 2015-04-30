@@ -8,13 +8,13 @@ import java.util.TreeMap;
 
 public class CheckersStrategy implements InterfaceStrategy {
     Random rand = new Random(); // One can seed with a parameter variable here
-    
     @Override
     public InterfaceSearchResult getBestMove(InterfacePosition position, InterfaceSearchContext context) {
         InterfaceSearchResult searchResult = new CheckersSearchResult(); // Return information
 
         int player   = position.getPlayer();
         if (player == 0) {
+            System.out.println("NO");
         	player = 1;
         }
         int opponent = 3-player; // There are two players, 1 and 2.

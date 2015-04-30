@@ -17,6 +17,7 @@ ThreadCompleteListener {
 
   @Override
   public void onMove() {
+      System.out.println("ON MOVE BEING CALLED: CURRENT PLAYER: " + Integer.toString(currentPlayer));
     position.setPlayer(currentPlayer);
     final CheckersSearchContext context = new CheckersSearchContext();
     context.setOriginalPlayer(currentPlayer);

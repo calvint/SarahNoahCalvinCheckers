@@ -179,7 +179,7 @@ public class CheckersPosition implements InterfacePosition {
     
     private boolean possibleMove(InterfaceIterator iPos) {
     	//check if the destination is on the board and return false if it is
-    	if (iPos.dC() >= 8 || iPos.dR() >= 8) {
+    	if (iPos.dC() >= 8 || iPos.dR() >= 8 || iPos.dC() < 0 || iPos.dR() < 0) {
     		return false;
     	}
     	//check if there is a piece at the initial square and that the piece is owned by the current player
