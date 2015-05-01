@@ -25,7 +25,7 @@ public class CheckersStrategy implements InterfaceStrategy {
             InterfacePosition posNew = new CheckersPosition( position );
             if (((CheckersPosition)posNew).validMove( iPos, jumpPossible)) { // The column is not yet full
                 posNew.setColor(iPos, player);
-                int isWin = posNew.isWinner( iPos ); // iPos
+                int isWin = posNew.isWinner(); // iPos
                 float score;
                 if        ( isWin ==   player ) { score =  1f;  // Win
                 } else if ( isWin ==        0 ) { score =  0f;  // Draw
